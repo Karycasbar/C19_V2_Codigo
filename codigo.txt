@@ -1,0 +1,68 @@
+climber.lifetime = 800;
+---------------------------------
+clibersGroup.add(climber);
+-------------------------------
+ghost.scale = 0.3;
+
+------------------------------------------
+  if(keyDown("left_arrow")){
+    ghost.x = ghost.x -3;
+  }
+  if(keyDown("right_arrow")){
+    ghost.x += 3;
+  }
+  if(keyDown("space")){
+    ghost.velocityY = -10
+  }
+  ghost.velocityY = ghost.velocityY + 0.8;
+
+---------------------------------------------
+ghost.depth = door.depth && climber.depth;
+ghost.depth = ghost.depth + 1;
+
+-----------------------------------------------
+
+if(climbersGroup.isTouching(ghost)){
+ghost.velocityY = 0
+}
+-------------------------------------
+invisibleBlockGroup = new Group();
+----------------------------------------
+
+  if(invisibleBlockGroup.isTouching(ghost) || ghost.y > 600){
+    ghost.destroy();
+    gameState = "end";
+  }
+----------------------------------------------------------------
+
+  invisibleBlock = createSprite(200,15);
+  invisibleBlock.width = climber.width;
+  invisibleBlock.height = 2;
+  
+  -----------------------------------------------
+    invisibleBlock.x = door.x;
+  invisibleBlock.velocityY = 2;
+  ---------------------------------------------
+  
+    invisibleBlock.debug = true;
+  invisibleBlockGroup.add(invisibleBlock);
+ -----------------------------------------------
+if(gameState == "play"){
+
+-------------------------------------------------
+    gameState = "end";
+ -----------------------------------------------
+ if(gameState == "end"){
+  stroke("yellow");
+  fill("yellow");
+  textSize(30);
+  text("Game Over",200,250);
+}
+
+-------------------------------------------------
+spookySound.loop();
+
+  
+  
+  
+  
